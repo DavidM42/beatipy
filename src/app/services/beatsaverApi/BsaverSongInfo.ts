@@ -36,9 +36,9 @@ export interface BsaverSongInfo {
         rating: number
     };
     description: string;
-    deletedAt: Date | null; // TODO correct?
+    deletedAt: Date | null;
     _id: string;
-    key: number; // TODO correct?
+    key: string;
     name: string;
     uploader: {
         _id: string,

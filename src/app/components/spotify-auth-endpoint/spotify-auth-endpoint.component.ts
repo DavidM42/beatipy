@@ -25,13 +25,12 @@ export class SpotifyAuthEndpointComponent implements OnInit {
       const expiresIn = urlParams.get('expires_in');
       const state = urlParams.get('state');
 
-      // TODO then
       if (urlParams.has('error')) {
         const error = urlParams.get('error');
         // TODO display error with error value
       } else {
         this.spotifyApiService.retrievedToken(state, accessToken);
-        this.router.navigate(['/']); // TODO correct?
+        this.router.navigate(['/']);
       }
 
     });

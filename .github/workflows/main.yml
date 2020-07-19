@@ -1,4 +1,4 @@
-name: CI
+name: CI and gh-Pages deploy
 
 on:
   push:
@@ -15,9 +15,8 @@ jobs:
           persist-credentials: false
 
       - name: Install and Build 🔧
-        # TODO maybe change npm install to npm ci to be faster
         run: |
-          npm install
+          npm ci
           npm run build:prod
           cp dist/beatiPy/index.html dist/beatiPy/404.html
 

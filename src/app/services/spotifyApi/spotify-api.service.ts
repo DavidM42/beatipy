@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { environment } from '../../../environments/environment';
 
-// const Spotify = require('spotify-web-api-js');
-// TODO use import more like https://www.npmjs.com/package/spotify-web-api-js#integrated-typescript-typings
 import * as SpotifyWebApi from 'spotify-web-api-js';
 import { SpotifySongInfo } from './SpotifySongInfo';
 
@@ -49,15 +47,15 @@ export class SpotifyApiService {
     return this.spotify;
   }
 
-  // TODO maybe auth code flow with PKCE could also be good for app instead of implicit grant flow
   redirectToAuth() {
     const scopes = encodeURIComponent('playlist-read-collaborative playlist-read-private');
     const redirectUri = encodeURIComponent(this.redirectHost + 'spotifyAuth');
 
-    // TODO could also use https://www.npmjs.com/package/angular-web-storage for convencience
     const state = uuidv4();
+    // could also use https://www.npmjs.com/package/angular-web-storage for convencience
     localStorage.setItem('state', state);
 
+  // maybe auth code flow with PKCE could also be good for app instead of implicit grant flow
     // tslint:disable-next-line: max-line-length
     const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${this.clientId}&scope=${scopes}&redirect_uri=${redirectUri}&state=${state}`;
     window.location.href = url;

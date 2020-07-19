@@ -30,7 +30,8 @@ import { BeatsaverItemsComponent } from './components/beatsaver-items/beatsaver-
     BrowserAnimationsModule,
     FormsModule,
 
-    // TODO create sub module for ui and import primegn only there
+    // if many more included create submodules
+    // size is okay for now
     AutoCompleteModule,
     DataViewModule
   ],
