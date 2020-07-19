@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { v4 as uuidv4 } from 'uuid';
+
+import { environment } from '../../../environments/environment';
 
 // const Spotify = require('spotify-web-api-js');
 // TODO use import more like https://www.npmjs.com/package/spotify-web-api-js#integrated-typescript-typings
@@ -13,13 +14,13 @@ export class SpotifyApiService {
   private readonly localStorageTokenKey = 'spotifyToken';
 
   private clientId = '01eac0af946c4ad98a72c22467350058';
-  private redirectHost = 'http://localhost:4200';
 
   private accessToken: string;
   private spotify = new SpotifyWebApi.default();
 
-  constructor() {
-  }
+  private redirectHost = environment.baseUrl;
+
+  constructor() {}
 
   /**
    * Restores token from localstorage and tests it
@@ -50,7 +51,7 @@ export class SpotifyApiService {
   // TODO maybe auth code flow with PKCE could also be good for app instead of implicit grant flow
   redirectToAuth() {
     const scopes = encodeURIComponent('playlist-read-collaborative playlist-read-private');
-    const redirectUri = encodeURIComponent(this.redirectHost + '/spotifyAuth');
+    const redirectUri = encodeURIComponent(this.redirectHost + 'spotifyAuth');
 
     // TODO could also use https://www.npmjs.com/package/angular-web-storage for convencience
     const state = uuidv4();
