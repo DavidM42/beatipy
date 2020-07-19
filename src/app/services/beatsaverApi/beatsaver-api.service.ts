@@ -47,4 +47,6 @@ export class BeatsaverApiService {
     return allSongsInfo;
   }
 
+  // Beastsaver url is https://bsaber.com/songs/${song.key}/
+
 }
