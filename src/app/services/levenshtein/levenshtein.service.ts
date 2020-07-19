@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 const levenshtein = require('fast-levenshtein');
 
+import { BsaverSongInfo } from '../beatsaverApi/BsaverSongInfo';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class LevenshteinService {
     return levenshtein.get(stringOne, stringTwo);
   }
 
-  public getSongArtistTitleDistance(artist: string, title: string, song: SongInfo): number {
+  public getSongArtistTitleDistance(artist: string, title: string, song: BsaverSongInfo): number {
     const artistDistance = this.getStringsDistance(song.metadata.songAuthorName, artist);
     const titleDistance = this.getStringsDistance(song.metadata.songName, title);
 
@@ -20,7 +22,7 @@ export class LevenshteinService {
     return artistDistance + titleDistance;
   }
 
-  public getNearestSong(artist: string, title: string, songs: SongInfo[]): SongInfo {
+  public getNearestSong(artist: string, title: string, songs: BsaverSongInfo[]): BsaverSongInfo {
     const minimumDistaneSong = {
       song: null,
       distance: Number.MAX_VALUE

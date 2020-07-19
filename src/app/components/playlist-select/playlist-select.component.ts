@@ -20,7 +20,7 @@ export class PlaylistSelectComponent implements OnInit {
 
   results: PlaylistInfo[];
 
-  @Output() playlistTrackNames = new EventEmitter<string[]>();
+  @Output() playlistTrackNames = new EventEmitter<SpotifySongInfo[]>();
 
   constructor(
     private spotifyApi: SpotifyApiService
@@ -30,11 +30,10 @@ export class PlaylistSelectComponent implements OnInit {
   }
 
   public async playlistSelected() {
-    console.log('Song tracks:');
-    const trackNames = await this.spotifyApi.getPlaylistTrackNames(this.selectedPlaylist.id);
-    console.log(trackNames);
-    this.playlistTrackNames.emit(trackNames);
-    // TODO search beatsaver with items of song
+    // console.log('Song tracks:');
+    const trackNames = await this.spotifyApi.getPlaylistTracks(this.selectedPlaylist.id);
+    // console.log(trackNames);
+    this.playlistTrackNames.next(trackNames);
   }
 
   public async search(event) {

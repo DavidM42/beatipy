@@ -1,12 +1,4 @@
-interface SearchApiResponse {
-    docs: SongInfo[];
-    totalDocs: number;
-    lastPage: number;
-    prevPage: number;
-    nextpage: number;
-}
-
-interface SongInfo {
+export interface BsaverSongInfo {
     metadata: {
         difficulties: {
             easy: boolean,

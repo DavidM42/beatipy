@@ -32,12 +32,12 @@ export class SpotifyApiService {
     if (!savedToken) {
       this.redirectToAuth();
     } else {
+      this.setToken = savedToken;
       // Test token and redirect if fails
       this.spotifyApi.getMe().then((response) => {}, (error) => {
         this.redirectToAuth();
       });
     }
-    this.setToken = savedToken;
   }
 
   private get spotifyApi() {
@@ -111,11 +111,19 @@ export class SpotifyApiService {
     }
   }
 
-  public async getPlaylistTrackNames(playlistId: string) {
+  public async getPlaylistTracks(playlistId: string): Promise<SpotifySongInfo[]> {
     this.restoreAndTestToken();
     try {
       const data = await this.spotifyApi.getPlaylistTracks(playlistId);
-      return data.items.map((trackItem) => trackItem.track.name);
+      return data.items.map((trackItem) => {
+        // set type as song because could also be show but don't want that
+        const retypedTrack = trackItem.track as SpotifyApi.TrackObjectFull;
+        return {
+          name: retypedTrack.name,
+          // TODO maybe combine all artists name here for good search or stay at only first artist?
+          artist: retypedTrack.artists[0].name
+        };
+      });
     } catch (err) {
       // TODO error handling
       console.error(err);

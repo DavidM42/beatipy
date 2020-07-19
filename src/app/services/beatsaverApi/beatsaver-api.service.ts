@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BsaverSongInfo } from './BsaverSongInfo';
+
+interface SearchApiResponse {
+  docs: BsaverSongInfo[];
+  totalDocs: number;
+  lastPage: number;
+  prevPage: number;
+  nextpage: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +31,7 @@ export class BeatsaverApiService {
     });
   }
 
-  public async querySearchAllSongInfos(searchText: string, maximumResults: number = null): Promise<SongInfo[]> {
+  public async querySearchAllSongInfos(searchText: string, maximumResults: number = null): Promise<BsaverSongInfo[]> {
     let allSongsInfo = [];
 
     let currentpage = 0;

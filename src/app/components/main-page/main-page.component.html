@@ -1,6 +1,8 @@
 <div id="parent">
     <div id="container">
         <h1>Beatsaver Spotify Matcher</h1>
-        <app-playlist-select (playlistTrackNames)=""></app-playlist-select>
+        <!-- TODO show wait spinner when spotify playlist tracks were received and waiting for beatsaver responses -->
+        <app-playlist-select (playlistTrackNames)="onPlaylistTracksReceived($event)"></app-playlist-select>
+        <app-beatsaver-items [spotifySongs]="beatsaverTableSongReceiver"></app-beatsaver-items>
     </div>
 </div>

@@ -1,0 +1,31 @@
+<!-- 
+<p-dataView [value]="beatsaverMaps">
+    <ng-template let-map pTemplate="listItem">
+        <div class="p-col-12 p-md-3">
+            <a href="beatsaver://{{map.key}}">Beastsaber Oneclick Install</a>
+        </div>
+    </ng-template>
+    <ng-template let-map pTemplate="listItem">
+        <div class="p-col-12 p-md-3">
+            {{map.metadata.songName}}
+        </div>
+    </ng-template>
+    <ng-template let-map pTemplate="listItem">
+        <div class="p-col-12 p-md-3">
+            {{map.metadata.songAuthorName}}
+        </div>
+    </ng-template>
+</p-dataView> -->
+
+<p-dataView [value]="beatsaverMaps">
+    <ng-template let-map pTemplate="listItem">
+        <div>
+            <a [href]="safeBeatsaverInstallUrl(map.key)">Beastsaber Oneclick Install</a>
+        </div>
+    </ng-template>
+    <ng-template let-map pTemplate="gridItem">
+        <div class="p-col-12 p-md-3">
+            {{map.metadata.songName}}
+        </div>
+    </ng-template>
+</p-dataView>
