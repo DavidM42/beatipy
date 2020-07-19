@@ -36,6 +36,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- \n<p-dataView [value]=\"beatsaverMaps\">\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            <a href=\"beatsaver://{{map.key}}\">Beastsaber Oneclick Install</a>\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songName}}\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songAuthorName}}\n        </div>\n    </ng-template>\n</p-dataView> -->\n\n<p-dataView [value]=\"beatsaverMaps\">\n    <ng-template let-map pTemplate=\"listItem\">\n        <div>\n            <a [href]=\"safeBeatsaverInstallUrl(map.key)\">Beastsaber Oneclick Install</a>\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"gridItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songName}}\n        </div>\n    </ng-template>\n</p-dataView>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/main-page/main-page.component.html":
 /*!*****************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/main-page/main-page.component.html ***!
@@ -45,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"parent\">\n    <div id=\"container\">\n        <h1>Beatsaver Spotify Matcher</h1>\n        <app-playlist-select (playlistTrackNames)=\"\"></app-playlist-select>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"parent\">\n    <div id=\"container\">\n        <h1>Beatsaver Spotify Matcher</h1>\n        <!-- TODO show wait spinner when spotify playlist tracks were received and waiting for beatsaver responses -->\n        <app-playlist-select (playlistTrackNames)=\"onPlaylistTracksReceived($event)\"></app-playlist-select>\n        <app-beatsaver-items [spotifySongs]=\"beatsaverTableSongReceiver\"></app-beatsaver-items>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -391,47 +404,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/beatsaverApi/beatsaver-api.service */ "./src/app/services/beatsaverApi/beatsaver-api.service.ts");
-/* harmony import */ var _services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/levenshtein/levenshtein.service */ "./src/app/services/levenshtein/levenshtein.service.ts");
-/* harmony import */ var _services_spotifyApi_spotify_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/spotifyApi/spotify-api.service */ "./src/app/services/spotifyApi/spotify-api.service.ts");
-
-
-
 
 
 let AppComponent = class AppComponent {
-    constructor(beatsaverApi, levevenstheinService, spotifyApi) {
-        this.beatsaverApi = beatsaverApi;
-        this.levevenstheinService = levevenstheinService;
-        this.spotifyApi = spotifyApi;
+    constructor() {
         this.title = 'beatiPy';
     }
-    getBeatsaver() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            // const artist = 'Mark Ronson';
-            const artist = 'Bruno Mars';
-            // const title = 'Uptown funk';
-            const title = '24k Magic';
-            const search = artist + ' - ' + title;
-            const result = yield this.beatsaverApi.querySearchAllSongInfos(search, 20);
-            const nearestSong = this.levevenstheinService.getNearestSong(artist, title, result);
-            this.result = nearestSong;
-        });
-    }
     ngOnInit() {
-        // this.getBeatsaver();
-    }
-    getUserPlaylists() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            this.spotifyResults = yield this.spotifyApi.getUserPlaylists();
-        });
     }
 };
-AppComponent.ctorParameters = () => [
-    { type: _services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__["BeatsaverApiService"] },
-    { type: _services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__["LevenshteinService"] },
-    { type: _services_spotifyApi_spotify_api_service__WEBPACK_IMPORTED_MODULE_4__["SpotifyApiService"] }
-];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
@@ -461,11 +442,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var primeng_autocomplete___WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/autocomplete/ */ "./node_modules/primeng/fesm2015/primeng-autocomplete.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/spotify-auth-endpoint/spotify-auth-endpoint.component */ "./src/app/components/spotify-auth-endpoint/spotify-auth-endpoint.component.ts");
-/* harmony import */ var _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/playlist-select/playlist-select.component */ "./src/app/components/playlist-select/playlist-select.component.ts");
-/* harmony import */ var _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main-page/main-page.component */ "./src/app/components/main-page/main-page.component.ts");
+/* harmony import */ var primeng_dataview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primeng/dataview */ "./node_modules/primeng/fesm2015/primeng-dataview.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/spotify-auth-endpoint/spotify-auth-endpoint.component */ "./src/app/components/spotify-auth-endpoint/spotify-auth-endpoint.component.ts");
+/* harmony import */ var _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/playlist-select/playlist-select.component */ "./src/app/components/playlist-select/playlist-select.component.ts");
+/* harmony import */ var _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main-page/main-page.component */ "./src/app/components/main-page/main-page.component.ts");
+/* harmony import */ var _components_beatsaver_items_beatsaver_items_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/beatsaver-items/beatsaver-items.component */ "./src/app/components/beatsaver-items/beatsaver-items.component.ts");
+
+
 
 
 
@@ -483,24 +468,115 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-            _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_9__["SpotifyAuthEndpointComponent"],
-            _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_10__["PlaylistSelectComponent"],
-            _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_11__["MainPageComponent"]
+            _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
+            _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_10__["SpotifyAuthEndpointComponent"],
+            _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_11__["PlaylistSelectComponent"],
+            _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_12__["MainPageComponent"],
+            _components_beatsaver_items_beatsaver_items_component__WEBPACK_IMPORTED_MODULE_13__["BeatsaverItemsComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
             // TODO create sub module for ui and import primegn only there
-            primeng_autocomplete___WEBPACK_IMPORTED_MODULE_6__["AutoCompleteModule"]
+            primeng_autocomplete___WEBPACK_IMPORTED_MODULE_6__["AutoCompleteModule"],
+            primeng_dataview__WEBPACK_IMPORTED_MODULE_7__["DataViewModule"]
         ],
         providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/beatsaver-items/beatsaver-items.component.css":
+/*!**************************************************************************!*\
+  !*** ./src/app/components/beatsaver-items/beatsaver-items.component.css ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYmVhdHNhdmVyLWl0ZW1zL2JlYXRzYXZlci1pdGVtcy5jb21wb25lbnQuY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/components/beatsaver-items/beatsaver-items.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/components/beatsaver-items/beatsaver-items.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: BeatsaverItemsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeatsaverItemsComponent", function() { return BeatsaverItemsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/beatsaverApi/beatsaver-api.service */ "./src/app/services/beatsaverApi/beatsaver-api.service.ts");
+/* harmony import */ var src_app_services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/levenshtein/levenshtein.service */ "./src/app/services/levenshtein/levenshtein.service.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+
+
+
+
+
+let BeatsaverItemsComponent = class BeatsaverItemsComponent {
+    constructor(sanitizer, beatsaverApi, levenshteinServuce) {
+        this.sanitizer = sanitizer;
+        this.beatsaverApi = beatsaverApi;
+        this.levenshteinServuce = levenshteinServuce;
+        this.beatsaverMaps = [];
+    }
+    set spotifySongs(value) {
+        this.spotifySongsInternal = value;
+        // things to do on new data
+        if (value && value.length > 0) {
+            this.getBeatsaverMaps(value);
+        }
+    }
+    get spotifySongs() {
+        return this.spotifySongsInternal;
+    }
+    ngOnInit() {
+    }
+    safeBeatsaverInstallUrl(key) {
+        return this.sanitizer.bypassSecurityTrustUrl('beatsaver://' + key);
+    }
+    getBeatsaverMaps(songs) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            for (const song of songs) {
+                // debugger;
+                const search = song.artist + ' - ' + song.name;
+                // TODO don't only append nearest songs but also consider rating and present multiple optons per song if possible
+                const result = yield this.beatsaverApi.querySearchAllSongInfos(search, 20);
+                const nearestSong = this.levenshteinServuce.getNearestSong(song.artist, song.name, result);
+                // debugger;
+                this.beatsaverMaps.push(nearestSong);
+            }
+        });
+    }
+};
+BeatsaverItemsComponent.ctorParameters = () => [
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"] },
+    { type: src_app_services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__["BeatsaverApiService"] },
+    { type: src_app_services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__["LevenshteinService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], BeatsaverItemsComponent.prototype, "spotifySongs", null);
+BeatsaverItemsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-beatsaver-items',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./beatsaver-items.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./beatsaver-items.component.css */ "./src/app/components/beatsaver-items/beatsaver-items.component.css")).default]
+    })
+], BeatsaverItemsComponent);
 
 
 
@@ -536,6 +612,9 @@ __webpack_require__.r(__webpack_exports__);
 let MainPageComponent = class MainPageComponent {
     constructor() { }
     ngOnInit() {
+    }
+    onPlaylistTracksReceived(names) {
+        this.beatsaverTableSongReceiver = names;
     }
 };
 MainPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -588,11 +667,10 @@ let PlaylistSelectComponent = class PlaylistSelectComponent {
     }
     playlistSelected() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            console.log('Song tracks:');
-            const trackNames = yield this.spotifyApi.getPlaylistTrackNames(this.selectedPlaylist.id);
-            console.log(trackNames);
-            this.playlistTrackNames.emit(trackNames);
-            // TODO search beatsaver with items of song
+            // console.log('Song tracks:');
+            const trackNames = yield this.spotifyApi.getPlaylistTracks(this.selectedPlaylist.id);
+            // console.log(trackNames);
+            this.playlistTrackNames.next(trackNames);
         });
     }
     search(event) {
@@ -873,12 +951,12 @@ let SpotifyApiService = class SpotifyApiService {
             this.redirectToAuth();
         }
         else {
+            this.setToken = savedToken;
             // Test token and redirect if fails
             this.spotifyApi.getMe().then((response) => { }, (error) => {
                 this.redirectToAuth();
             });
         }
-        this.setToken = savedToken;
     }
     get spotifyApi() {
         if (!this.accessToken) {
@@ -947,12 +1025,20 @@ let SpotifyApiService = class SpotifyApiService {
             }
         });
     }
-    getPlaylistTrackNames(playlistId) {
+    getPlaylistTracks(playlistId) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.restoreAndTestToken();
             try {
                 const data = yield this.spotifyApi.getPlaylistTracks(playlistId);
-                return data.items.map((trackItem) => trackItem.track.name);
+                return data.items.map((trackItem) => {
+                    // set type as song because could also be show but don't want that
+                    const retypedTrack = trackItem.track;
+                    return {
+                        name: retypedTrack.name,
+                        // TODO maybe combine all artists name here for good search or stay at only first artist?
+                        artist: retypedTrack.artists[0].name
+                    };
+                });
             }
             catch (err) {
                 // TODO error handling

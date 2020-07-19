@@ -62,6 +62,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html":
+  /*!*****************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html ***!
+    \*****************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppComponentsBeatsaverItemsBeatsaverItemsComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<!-- \n<p-dataView [value]=\"beatsaverMaps\">\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            <a href=\"beatsaver://{{map.key}}\">Beastsaber Oneclick Install</a>\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songName}}\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"listItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songAuthorName}}\n        </div>\n    </ng-template>\n</p-dataView> -->\n\n<p-dataView [value]=\"beatsaverMaps\">\n    <ng-template let-map pTemplate=\"listItem\">\n        <div>\n            <a [href]=\"safeBeatsaverInstallUrl(map.key)\">Beastsaber Oneclick Install</a>\n        </div>\n    </ng-template>\n    <ng-template let-map pTemplate=\"gridItem\">\n        <div class=\"p-col-12 p-md-3\">\n            {{map.metadata.songName}}\n        </div>\n    </ng-template>\n</p-dataView>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/components/main-page/main-page.component.html":
   /*!*****************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/main-page/main-page.component.html ***!
@@ -77,7 +97,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div id=\"parent\">\n    <div id=\"container\">\n        <h1>Beatsaver Spotify Matcher</h1>\n        <app-playlist-select (playlistTrackNames)=\"\"></app-playlist-select>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "<div id=\"parent\">\n    <div id=\"container\">\n        <h1>Beatsaver Spotify Matcher</h1>\n        <!-- TODO show wait spinner when spotify playlist tracks were received and waiting for beatsaver responses -->\n        <app-playlist-select (playlistTrackNames)=\"onPlaylistTracksReceived($event)\"></app-playlist-select>\n        <app-beatsaver-items [spotifySongs]=\"beatsaverTableSongReceiver\"></app-beatsaver-items>\n    </div>\n</div>";
     /***/
   },
 
@@ -845,105 +865,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./services/beatsaverApi/beatsaver-api.service */
-    "./src/app/services/beatsaverApi/beatsaver-api.service.ts");
-    /* harmony import */
-
-
-    var _services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./services/levenshtein/levenshtein.service */
-    "./src/app/services/levenshtein/levenshtein.service.ts");
-    /* harmony import */
-
-
-    var _services_spotifyApi_spotify_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./services/spotifyApi/spotify-api.service */
-    "./src/app/services/spotifyApi/spotify-api.service.ts");
 
     var AppComponent = /*#__PURE__*/function () {
-      function AppComponent(beatsaverApi, levevenstheinService, spotifyApi) {
+      function AppComponent() {
         _classCallCheck(this, AppComponent);
 
-        this.beatsaverApi = beatsaverApi;
-        this.levevenstheinService = levevenstheinService;
-        this.spotifyApi = spotifyApi;
         this.title = 'beatiPy';
       }
 
       _createClass(AppComponent, [{
-        key: "getBeatsaver",
-        value: function getBeatsaver() {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var artist, title, search, result, nearestSong;
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    // const artist = 'Mark Ronson';
-                    artist = 'Bruno Mars'; // const title = 'Uptown funk';
-
-                    title = '24k Magic';
-                    search = artist + ' - ' + title;
-                    _context.next = 5;
-                    return this.beatsaverApi.querySearchAllSongInfos(search, 20);
-
-                  case 5:
-                    result = _context.sent;
-                    nearestSong = this.levevenstheinService.getNearestSong(artist, title, result);
-                    this.result = nearestSong;
-
-                  case 8:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee, this);
-          }));
-        }
-      }, {
         key: "ngOnInit",
-        value: function ngOnInit() {// this.getBeatsaver();
-        }
-      }, {
-        key: "getUserPlaylists",
-        value: function getUserPlaylists() {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    _context2.next = 2;
-                    return this.spotifyApi.getUserPlaylists();
-
-                  case 2:
-                    this.spotifyResults = _context2.sent;
-
-                  case 3:
-                  case "end":
-                    return _context2.stop();
-                }
-              }
-            }, _callee2, this);
-          }));
-        }
+        value: function ngOnInit() {}
       }]);
 
       return AppComponent;
     }();
-
-    AppComponent.ctorParameters = function () {
-      return [{
-        type: _services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__["BeatsaverApiService"]
-      }, {
-        type: _services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__["LevenshteinService"]
-      }, {
-        type: _services_spotifyApi_spotify_api_service__WEBPACK_IMPORTED_MODULE_4__["SpotifyApiService"]
-      }];
-    };
 
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-root',
@@ -1021,45 +957,248 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var primeng_dataview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! primeng/dataview */
+    "./node_modules/primeng/fesm2015/primeng-dataview.js");
+    /* harmony import */
+
+
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./components/spotify-auth-endpoint/spotify-auth-endpoint.component */
     "./src/app/components/spotify-auth-endpoint/spotify-auth-endpoint.component.ts");
     /* harmony import */
 
 
-    var _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./components/playlist-select/playlist-select.component */
     "./src/app/components/playlist-select/playlist-select.component.ts");
     /* harmony import */
 
 
-    var _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./components/main-page/main-page.component */
     "./src/app/components/main-page/main-page.component.ts");
+    /* harmony import */
+
+
+    var _components_beatsaver_items_beatsaver_items_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ./components/beatsaver-items/beatsaver-items.component */
+    "./src/app/components/beatsaver-items/beatsaver-items.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_9__["SpotifyAuthEndpointComponent"], _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_10__["PlaylistSelectComponent"], _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_11__["MainPageComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], // TODO create sub module for ui and import primegn only there
-      primeng_autocomplete___WEBPACK_IMPORTED_MODULE_6__["AutoCompleteModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"], _components_spotify_auth_endpoint_spotify_auth_endpoint_component__WEBPACK_IMPORTED_MODULE_10__["SpotifyAuthEndpointComponent"], _components_playlist_select_playlist_select_component__WEBPACK_IMPORTED_MODULE_11__["PlaylistSelectComponent"], _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_12__["MainPageComponent"], _components_beatsaver_items_beatsaver_items_component__WEBPACK_IMPORTED_MODULE_13__["BeatsaverItemsComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], // TODO create sub module for ui and import primegn only there
+      primeng_autocomplete___WEBPACK_IMPORTED_MODULE_6__["AutoCompleteModule"], primeng_dataview__WEBPACK_IMPORTED_MODULE_7__["DataViewModule"]],
       providers: [],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
     })], AppModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/components/beatsaver-items/beatsaver-items.component.css":
+  /*!**************************************************************************!*\
+    !*** ./src/app/components/beatsaver-items/beatsaver-items.component.css ***!
+    \**************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppComponentsBeatsaverItemsBeatsaverItemsComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYmVhdHNhdmVyLWl0ZW1zL2JlYXRzYXZlci1pdGVtcy5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/components/beatsaver-items/beatsaver-items.component.ts":
+  /*!*************************************************************************!*\
+    !*** ./src/app/components/beatsaver-items/beatsaver-items.component.ts ***!
+    \*************************************************************************/
+
+  /*! exports provided: BeatsaverItemsComponent */
+
+  /***/
+  function srcAppComponentsBeatsaverItemsBeatsaverItemsComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "BeatsaverItemsComponent", function () {
+      return BeatsaverItemsComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_app_services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/services/beatsaverApi/beatsaver-api.service */
+    "./src/app/services/beatsaverApi/beatsaver-api.service.ts");
+    /* harmony import */
+
+
+    var src_app_services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/services/levenshtein/levenshtein.service */
+    "./src/app/services/levenshtein/levenshtein.service.ts");
+    /* harmony import */
+
+
+    var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/platform-browser */
+    "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+
+    var BeatsaverItemsComponent = /*#__PURE__*/function () {
+      function BeatsaverItemsComponent(sanitizer, beatsaverApi, levenshteinServuce) {
+        _classCallCheck(this, BeatsaverItemsComponent);
+
+        this.sanitizer = sanitizer;
+        this.beatsaverApi = beatsaverApi;
+        this.levenshteinServuce = levenshteinServuce;
+        this.beatsaverMaps = [];
+      }
+
+      _createClass(BeatsaverItemsComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "safeBeatsaverInstallUrl",
+        value: function safeBeatsaverInstallUrl(key) {
+          return this.sanitizer.bypassSecurityTrustUrl('beatsaver://' + key);
+        }
+      }, {
+        key: "getBeatsaverMaps",
+        value: function getBeatsaverMaps(songs) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _iterator, _step, song, search, result, nearestSong;
+
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _iterator = _createForOfIteratorHelper(songs);
+                    _context.prev = 1;
+
+                    _iterator.s();
+
+                  case 3:
+                    if ((_step = _iterator.n()).done) {
+                      _context.next = 13;
+                      break;
+                    }
+
+                    song = _step.value;
+                    // debugger;
+                    search = song.artist + ' - ' + song.name; // TODO don't only append nearest songs but also consider rating and present multiple optons per song if possible
+
+                    _context.next = 8;
+                    return this.beatsaverApi.querySearchAllSongInfos(search, 20);
+
+                  case 8:
+                    result = _context.sent;
+                    nearestSong = this.levenshteinServuce.getNearestSong(song.artist, song.name, result); // debugger;
+
+                    this.beatsaverMaps.push(nearestSong);
+
+                  case 11:
+                    _context.next = 3;
+                    break;
+
+                  case 13:
+                    _context.next = 18;
+                    break;
+
+                  case 15:
+                    _context.prev = 15;
+                    _context.t0 = _context["catch"](1);
+
+                    _iterator.e(_context.t0);
+
+                  case 18:
+                    _context.prev = 18;
+
+                    _iterator.f();
+
+                    return _context.finish(18);
+
+                  case 21:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this, [[1, 15, 18, 21]]);
+          }));
+        }
+      }, {
+        key: "spotifySongs",
+        set: function set(value) {
+          this.spotifySongsInternal = value; // things to do on new data
+
+          if (value && value.length > 0) {
+            this.getBeatsaverMaps(value);
+          }
+        },
+        get: function get() {
+          return this.spotifySongsInternal;
+        }
+      }]);
+
+      return BeatsaverItemsComponent;
+    }();
+
+    BeatsaverItemsComponent.ctorParameters = function () {
+      return [{
+        type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"]
+      }, {
+        type: src_app_services_beatsaverApi_beatsaver_api_service__WEBPACK_IMPORTED_MODULE_2__["BeatsaverApiService"]
+      }, {
+        type: src_app_services_levenshtein_levenshtein_service__WEBPACK_IMPORTED_MODULE_3__["LevenshteinService"]
+      }];
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], BeatsaverItemsComponent.prototype, "spotifySongs", null);
+    BeatsaverItemsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-beatsaver-items',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./beatsaver-items.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/components/beatsaver-items/beatsaver-items.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./beatsaver-items.component.css */
+      "./src/app/components/beatsaver-items/beatsaver-items.component.css"))["default"]]
+    })], BeatsaverItemsComponent);
     /***/
   },
 
@@ -1123,6 +1262,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(MainPageComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {}
+      }, {
+        key: "onPlaylistTracksReceived",
+        value: function onPlaylistTracksReceived(names) {
+          this.beatsaverTableSongReceiver = names;
+        }
       }]);
 
       return MainPageComponent;
@@ -1212,44 +1356,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "playlistSelected",
         value: function playlistSelected() {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
             var trackNames;
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
               while (1) {
-                switch (_context3.prev = _context3.next) {
+                switch (_context2.prev = _context2.next) {
                   case 0:
-                    console.log('Song tracks:');
-                    _context3.next = 3;
-                    return this.spotifyApi.getPlaylistTrackNames(this.selectedPlaylist.id);
+                    _context2.next = 2;
+                    return this.spotifyApi.getPlaylistTracks(this.selectedPlaylist.id);
 
-                  case 3:
-                    trackNames = _context3.sent;
-                    console.log(trackNames);
-                    this.playlistTrackNames.emit(trackNames); // TODO search beatsaver with items of song
+                  case 2:
+                    trackNames = _context2.sent;
+                    // console.log(trackNames);
+                    this.playlistTrackNames.next(trackNames);
 
-                  case 6:
+                  case 4:
                   case "end":
-                    return _context3.stop();
+                    return _context2.stop();
                 }
               }
-            }, _callee3, this);
+            }, _callee2, this);
           }));
         }
       }, {
         key: "search",
         value: function search(event) {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
             var results;
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context3.prev = _context3.next) {
                   case 0:
-                    _context4.prev = 0;
-                    _context4.next = 3;
+                    _context3.prev = 0;
+                    _context3.next = 3;
                     return this.spotifyApi.searchItem(event.query, ['playlist']);
 
                   case 3:
-                    results = _context4.sent;
+                    results = _context3.sent;
                     this.results = results.playlists.items.map(function (playlist) {
                       var resultItem = {
                         name: playlist.name,
@@ -1263,20 +1406,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                       return resultItem;
                     });
-                    _context4.next = 10;
+                    _context3.next = 10;
                     break;
 
                   case 7:
-                    _context4.prev = 7;
-                    _context4.t0 = _context4["catch"](0);
-                    console.error(_context4.t0);
+                    _context3.prev = 7;
+                    _context3.t0 = _context3["catch"](0);
+                    console.error(_context3.t0);
 
                   case 10:
                   case "end":
-                    return _context4.stop();
+                    return _context3.stop();
                 }
               }
-            }, _callee4, this, [[0, 7]]);
+            }, _callee3, this, [[0, 7]]);
           }));
         }
       }]);
@@ -1478,14 +1621,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "querySearchByPage",
         value: function querySearchByPage(searchText) {
           var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
             var _this2 = this;
 
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
-                    return _context5.abrupt("return", new Promise(function (resolve, reject) {
+                    return _context4.abrupt("return", new Promise(function (resolve, reject) {
                       var url = "".concat(_this2.beatsaverApiBaseUrl, "search/text/").concat(page, "?q=").concat(searchText);
 
                       _this2.http.get(url).subscribe(function (rawResult) {
@@ -1496,21 +1639,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 1:
                   case "end":
-                    return _context5.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee5);
+            }, _callee4);
           }));
         }
       }, {
         key: "querySearchAllSongInfos",
         value: function querySearchAllSongInfos(searchText) {
           var maximumResults = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
             var allSongsInfo, currentpage, lastPage, totalDocs, pageResults;
-            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
-                switch (_context6.prev = _context6.next) {
+                switch (_context5.prev = _context5.next) {
                   case 0:
                     allSongsInfo = [];
                     currentpage = 0;
@@ -1519,43 +1662,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                     if (!(currentpage < lastPage && allSongsInfo.length < totalDocs)) {
-                      _context6.next = 17;
+                      _context5.next = 17;
                       break;
                     }
 
-                    _context6.next = 7;
+                    _context5.next = 7;
                     return this.querySearchByPage(searchText, currentpage);
 
                   case 7:
-                    pageResults = _context6.sent;
+                    pageResults = _context5.sent;
                     currentpage += 1;
                     lastPage = pageResults.lastPage;
                     totalDocs = pageResults.totalDocs;
                     allSongsInfo = allSongsInfo.concat(pageResults.docs);
 
                     if (!(maximumResults && allSongsInfo.length >= maximumResults)) {
-                      _context6.next = 15;
+                      _context5.next = 15;
                       break;
                     }
 
                     console.log('Limit of ' + maximumResults + ' results reached');
-                    return _context6.abrupt("break", 17);
+                    return _context5.abrupt("break", 17);
 
                   case 15:
-                    _context6.next = 4;
+                    _context5.next = 4;
                     break;
 
                   case 17:
                     console.log('In total search could return: ' + totalDocs + ' results');
                     console.log('Returning ' + allSongsInfo.length + ' results');
-                    return _context6.abrupt("return", allSongsInfo);
+                    return _context5.abrupt("return", allSongsInfo);
 
                   case 20:
                   case "end":
-                    return _context6.stop();
+                    return _context5.stop();
                 }
               }
-            }, _callee6, this);
+            }, _callee5, this);
           }));
         }
       }]);
@@ -1637,12 +1780,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             distance: Number.MAX_VALUE
           };
 
-          var _iterator = _createForOfIteratorHelper(songs),
-              _step;
+          var _iterator2 = _createForOfIteratorHelper(songs),
+              _step2;
 
           try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var song = _step.value;
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var song = _step2.value;
               var songDistance = this.getSongArtistTitleDistance(artist, title, song);
 
               if (songDistance < minimumDistaneSong.distance) {
@@ -1651,9 +1794,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator.e(err);
+            _iterator2.e(err);
           } finally {
-            _iterator.f();
+            _iterator2.f();
           }
 
           return minimumDistaneSong.song;
@@ -1746,13 +1889,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (!savedToken) {
             this.redirectToAuth();
           } else {
-            // Test token and redirect if fails
+            this.setToken = savedToken; // Test token and redirect if fails
+
             this.spotifyApi.getMe().then(function (response) {}, function (error) {
               _this3.redirectToAuth();
             });
           }
-
-          this.setToken = savedToken;
         }
       }, {
         key: "redirectToAuth",
@@ -1787,18 +1929,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getUserPlaylists",
         value: function getUserPlaylists() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var data;
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              while (1) {
+                switch (_context6.prev = _context6.next) {
+                  case 0:
+                    // only do it once not in every request but not in constructor cause endless loop
+                    this.restoreAndTestToken();
+                    _context6.prev = 1;
+                    _context6.next = 4;
+                    return this.spotifyApi.getUserPlaylists({
+                      offset: 0,
+                      limit: 50
+                    });
+
+                  case 4:
+                    data = _context6.sent;
+                    return _context6.abrupt("return", data);
+
+                  case 8:
+                    _context6.prev = 8;
+                    _context6.t0 = _context6["catch"](1);
+                    // TODO error handling
+                    console.error(_context6.t0);
+
+                  case 11:
+                  case "end":
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this, [[1, 8]]);
+          }));
+        }
+      }, {
+        key: "searchItem",
+        value: function searchItem(searchString, type) {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
             var data;
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
                 switch (_context7.prev = _context7.next) {
                   case 0:
-                    // only do it once not in every request but not in constructor cause endless loop
                     this.restoreAndTestToken();
                     _context7.prev = 1;
                     _context7.next = 4;
-                    return this.spotifyApi.getUserPlaylists({
-                      offset: 0,
+                    return this.spotifyApi.search(searchString, type, {
                       limit: 50
                     });
 
@@ -1821,8 +1997,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "searchItem",
-        value: function searchItem(searchString, type) {
+        key: "getPlaylistTracks",
+        value: function getPlaylistTracks(playlistId) {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
             var data;
             return regeneratorRuntime.wrap(function _callee8$(_context8) {
@@ -1832,13 +2008,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     this.restoreAndTestToken();
                     _context8.prev = 1;
                     _context8.next = 4;
-                    return this.spotifyApi.search(searchString, type, {
-                      limit: 50
-                    });
+                    return this.spotifyApi.getPlaylistTracks(playlistId);
 
                   case 4:
                     data = _context8.sent;
-                    return _context8.abrupt("return", data);
+                    return _context8.abrupt("return", data.items.map(function (trackItem) {
+                      // set type as song because could also be show but don't want that
+                      var retypedTrack = trackItem.track;
+                      return {
+                        name: retypedTrack.name,
+                        // TODO maybe combine all artists name here for good search or stay at only first artist?
+                        artist: retypedTrack.artists[0].name
+                      };
+                    }));
 
                   case 8:
                     _context8.prev = 8;
@@ -1852,40 +2034,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }, _callee8, this, [[1, 8]]);
-          }));
-        }
-      }, {
-        key: "getPlaylistTrackNames",
-        value: function getPlaylistTrackNames(playlistId) {
-          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-            var data;
-            return regeneratorRuntime.wrap(function _callee9$(_context9) {
-              while (1) {
-                switch (_context9.prev = _context9.next) {
-                  case 0:
-                    this.restoreAndTestToken();
-                    _context9.prev = 1;
-                    _context9.next = 4;
-                    return this.spotifyApi.getPlaylistTracks(playlistId);
-
-                  case 4:
-                    data = _context9.sent;
-                    return _context9.abrupt("return", data.items.map(function (trackItem) {
-                      return trackItem.track.name;
-                    }));
-
-                  case 8:
-                    _context9.prev = 8;
-                    _context9.t0 = _context9["catch"](1);
-                    // TODO error handling
-                    console.error(_context9.t0);
-
-                  case 11:
-                  case "end":
-                    return _context9.stop();
-                }
-              }
-            }, _callee9, this, [[1, 8]]);
           }));
         }
       }, {
