@@ -15,6 +15,7 @@ jobs:
           persist-credentials: false
 
       - name: Install and Build 🔧
+        # TODO maybe change npm install to npm ci to be faster
         run: |
           npm install
           npm run build:prod
