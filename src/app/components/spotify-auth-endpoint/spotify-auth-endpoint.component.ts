@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SpotifyApiService } from 'src/app/services/spotifyApi/spotify-api.service';
+import { SpotifyApiService } from '../../services/spotifyApi/spotify-api.service';
 
 @Component({
   selector: 'app-spotify-auth-endpoint',

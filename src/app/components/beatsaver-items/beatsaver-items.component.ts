@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BeatsaverApiService } from 'src/app/services/beatsaverApi/beatsaver-api.service';
-import { LevenshteinService } from 'src/app/services/levenshtein/levenshtein.service';
+import { BeatsaverApiService } from '../../services/beatsaverApi/beatsaver-api.service';
+import { LevenshteinService } from '../../services/levenshtein/levenshtein.service';
 import { BsaverSongInfo } from '../../services/beatsaverApi/BsaverSongInfo';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SpotifySongInfo } from '../../services/spotifyApi/SpotifySongInfo';
 
 @Component({
   selector: 'app-beatsaver-items',
@@ -26,7 +27,7 @@ export class BeatsaverItemsComponent implements OnInit {
     return this.spotifySongsInternal;
   }
 
-  private beatsaverMaps: BsaverSongInfo[] = [];
+  public beatsaverMaps: BsaverSongInfo[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,

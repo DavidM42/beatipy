@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { SpotifySongInfo } from '../../services/spotifyApi/SpotifySongInfo';
 
 @Component({
   selector: 'app-main-page',

@@ -1,4 +1,4 @@
-interface SpotifySongInfo {
+export interface SpotifySongInfo {
     name: string;
     artist: string;
 }

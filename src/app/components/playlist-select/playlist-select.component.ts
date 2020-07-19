@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { SpotifyApiService } from 'src/app/services/spotifyApi/spotify-api.service';
+import { SpotifyApiService } from '../../services/spotifyApi/spotify-api.service';
+import { SpotifySongInfo } from '../../services/spotifyApi/SpotifySongInfo';
 
 interface PlaylistInfo {
   name: string;

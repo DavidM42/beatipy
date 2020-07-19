@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 // const Spotify = require('spotify-web-api-js');
 // TODO use import more like https://www.npmjs.com/package/spotify-web-api-js#integrated-typescript-typings
 import * as SpotifyWebApi from 'spotify-web-api-js';
+import { SpotifySongInfo } from './SpotifySongInfo';
 
 @Injectable({
   providedIn: 'root'
