@@ -1,0 +1,8 @@
+div#parent {
+    display: flex;
+    justify-content: center;
+}
+
+div#container {
+    margin-top: 100px;
+}
