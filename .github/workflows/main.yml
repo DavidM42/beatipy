@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           npm run build:prod
+          cp dist/beatiPy/index.html dist/beatiPy/404.html
 
       - name: Deploy to GH Pages
         uses: JamesIves/github-pages-deploy-action@3.5.7
