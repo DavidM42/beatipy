@@ -924,8 +924,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! spotify-web-api-js */ "./node_modules/spotify-web-api-js/src/spotify-web-api.js");
-/* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! spotify-web-api-js */ "./node_modules/spotify-web-api-js/src/spotify-web-api.js");
+/* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -936,8 +938,8 @@ let SpotifyApiService = class SpotifyApiService {
     constructor() {
         this.localStorageTokenKey = 'spotifyToken';
         this.clientId = '01eac0af946c4ad98a72c22467350058';
-        this.redirectHost = 'http://localhost:4200';
-        this.spotify = new spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3___default.a();
+        this.spotify = new spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4___default.a();
+        this.redirectHost = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
     }
     /**
      * Restores token from localstorage and tests it
@@ -967,7 +969,7 @@ let SpotifyApiService = class SpotifyApiService {
     // TODO maybe auth code flow with PKCE could also be good for app instead of implicit grant flow
     redirectToAuth() {
         const scopes = encodeURIComponent('playlist-read-collaborative playlist-read-private');
-        const redirectUri = encodeURIComponent(this.redirectHost + '/spotifyAuth');
+        const redirectUri = encodeURIComponent(this.redirectHost + 'spotifyAuth');
         // TODO could also use https://www.npmjs.com/package/angular-web-storage for convencience
         const state = Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])();
         localStorage.setItem('state', state);
@@ -1073,7 +1075,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 
 const environment = {
-    production: false
+    production: false,
+    baseUrl: 'http://localhost:4200/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

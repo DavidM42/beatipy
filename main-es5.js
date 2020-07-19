@@ -1852,13 +1852,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../../environments/environment */
+    "./src/environments/environment.ts");
+    /* harmony import */
+
+
+    var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! spotify-web-api-js */
     "./node_modules/spotify-web-api-js/src/spotify-web-api.js");
     /* harmony import */
 
 
-    var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3__); // const Spotify = require('spotify-web-api-js');
+    var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4__); // const Spotify = require('spotify-web-api-js');
     // TODO use import more like https://www.npmjs.com/package/spotify-web-api-js#integrated-typescript-typings
 
 
@@ -1868,8 +1874,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.localStorageTokenKey = 'spotifyToken';
         this.clientId = '01eac0af946c4ad98a72c22467350058';
-        this.redirectHost = 'http://localhost:4200';
-        this.spotify = new spotify_web_api_js__WEBPACK_IMPORTED_MODULE_3___default.a();
+        this.spotify = new spotify_web_api_js__WEBPACK_IMPORTED_MODULE_4___default.a();
+        this.redirectHost = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
       }
       /**
        * Restores token from localstorage and tests it
@@ -1901,7 +1907,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // TODO maybe auth code flow with PKCE could also be good for app instead of implicit grant flow
         value: function redirectToAuth() {
           var scopes = encodeURIComponent('playlist-read-collaborative playlist-read-private');
-          var redirectUri = encodeURIComponent(this.redirectHost + '/spotifyAuth'); // TODO could also use https://www.npmjs.com/package/angular-web-storage for convencience
+          var redirectUri = encodeURIComponent(this.redirectHost + 'spotifyAuth'); // TODO could also use https://www.npmjs.com/package/angular-web-storage for convencience
 
           var state = Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])();
           localStorage.setItem('state', state); // tslint:disable-next-line: max-line-length
@@ -2093,7 +2099,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var environment = {
-      production: false
+      production: false,
+      baseUrl: 'http://localhost:4200/'
     };
     /*
      * For easier debugging in development mode, you can import the following file
