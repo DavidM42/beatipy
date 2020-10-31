@@ -17,15 +17,18 @@
     </ng-template>
 </p-dataView> -->
 
-<p-dataView [value]="beatsaverMaps">
-    <ng-template let-map pTemplate="listItem">
+<p-dataView [value]="beatsaverMaps" layout="grid">
+    <!-- <ng-template let-map pTemplate="listItem">
         <div>
             <a [href]="safeBeatsaverInstallUrl(map.key)">Beastsaber Oneclick Install</a>
         </div>
-    </ng-template>
+    </ng-template> -->
     <ng-template let-map pTemplate="gridItem">
-        <div class="p-col-12 p-md-3">
+        <div class="p-col-6 p-md-2">
             {{map.metadata.songName}}
+        </div>
+        <div class="p-col-6 p-md-2">
+            <a [href]="safeBeatsaverInstallUrl(map.key)">Beastsaber Oneclick Install</a>
         </div>
     </ng-template>
 </p-dataView>

@@ -1,4 +1,4 @@
-<p-autoComplete [(ngModel)]="selectedPlaylist" (onSelect)="playlistSelected()" [suggestions]="results" field="name" (completeMethod)="search($event)" id="inputField" minLength="2" size='60'>
+<p-autoComplete [(ngModel)]="selectedPlaylist" (onSelect)="playlistSelected()" [suggestions]="results" field="name" (completeMethod)="search($event)" id="inputField" minLength="2" size='60' maxResults="15">
     <ng-template let-playlist pTemplate="item">
         <div class="ui-helper-clearfix">
             <img [src]="playlist.iconUrl" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/>
